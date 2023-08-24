@@ -47,6 +47,7 @@ h1{
 .botao1:hover{
 	background-color: yellow;
 	color: gray;
+	
 }
 
 .caixa1{
@@ -64,3 +65,4 @@ h1{
 	border: 3px solid #66bbff;
 	border-radius: 7px;
 }
+
