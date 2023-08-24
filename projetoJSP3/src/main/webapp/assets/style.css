@@ -33,17 +33,34 @@ h1{
 }
 
 .botao1{
-	font-size: 2.5em;
+	font-size: 2em;
 	text-decoration: none;
 	background-color: #66bbff;
 	padding: 10px;
 	color: white;
 	font-weight: bold;
 	border-radius: 12px;
-	
+	border: 0;
+	cursor: pointer;
 }
 
 .botao1:hover{
 	background-color: yellow;
 	color: gray;
+}
+
+.caixa1{
+	width: 320px;
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 3px solid #66bbff;
+	border-radius: 7px;
+}
+
+.caixa2{
+	width: 160px;
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 3px solid #66bbff;
+	border-radius: 7px;
 }
