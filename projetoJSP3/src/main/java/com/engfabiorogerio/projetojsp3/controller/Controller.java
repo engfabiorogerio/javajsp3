@@ -3,8 +3,6 @@ package com.engfabiorogerio.projetojsp3.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import com.engfabiorogerio.projetojsp3.model.DAO;
 import com.engfabiorogerio.projetojsp3.model.JavaBeans;
 
@@ -18,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Controller
  */
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -41,6 +39,12 @@ public class Controller extends HttpServlet {
 				contatos(request, response);
 			}else if(action.equals("/insert")) {
 				novoContato(request, response);
+			}else if(action.equals("/select")) {
+				listarContato(request, response);
+			}else if(action.equals("/update")) {
+				editarContato(request, response);
+			}else if(action.equals("/delete")) {
+				removerContato(request, response);
 			}else {
 				response.sendRedirect("index.html");
 			}
@@ -68,11 +72,46 @@ public class Controller extends HttpServlet {
 			
 			response.sendRedirect("main");
 	}
-
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void listarContato(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
+		String idcon = request.getParameter("idcon");
+		contato.setIdcon(idcon);
+		dao.selecionarContato(contato);
+		
+		request.setAttribute("idcon", contato.getIdcon());
+		request.setAttribute("nome", contato.getNome());	
+		request.setAttribute("fone", contato.getFone());	
+		request.setAttribute("email", contato.getEmail());	
+		
+		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
+		rd.forward(request, response);
 		
 	}
-
+	
+	protected void editarContato(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
+		
+		contato.setIdcon(request.getParameter("idcon"));
+		contato.setNome(request.getParameter("nome"));
+		contato.setFone(request.getParameter("fone"));
+		contato.setEmail(request.getParameter("email"));
+		
+		dao.alterarContato(contato);
+		response.sendRedirect("main");
+		
+	}
+	
+	protected void removerContato(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
+		String idcon = request.getParameter("idcon");
+		contato.setIdcon(idcon);
+		
+		dao.deletarContato(contato);
+		
+		response.sendRedirect("main");
+		
+	}
+	
+	
 }

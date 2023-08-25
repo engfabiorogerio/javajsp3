@@ -14,6 +14,47 @@
 <meta charset="UTF-8">
 <link rel="icon" href="assets/telefone.png">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+	th{
+		border: 1px solid gray;
+	}
+	
+	td{
+		border: 1px solid gray;
+		text-align: center;
+	}
+	
+	.botao2{
+		color: white;
+		text-decoration: none;
+		background-color: #66bbff;
+		font-size: 1.5em;
+		margin: 2px 4px;
+		border-radius: 3px;
+	}
+	
+	.botao2:hover{
+		background-color: yellow;
+		color: black;
+		box-shadow: 1px 2px;
+	}
+	
+	.botao3{
+		color: white;
+		background-color: red;
+		text-decoration: none;
+		font-size: 1.5em;
+		margin: 2px 4px;
+		border-radius: 3px;
+	}
+	
+	.botao3:hover{
+		background-color: white;
+		color: red;
+		box-shadow: 1px 2px;
+		
+	}
+</style>
 <title>Agenda de Contatos</title>
 </head>
 <body>
@@ -25,25 +66,28 @@
 	<table class="tabela" style="margin-top: 30px; width: 70vw;">		
 		<thead style="background-color: #66bbff; color: white;">
 			<tr>
-				<th style="border: 1px solid gray;">Id</th>
-				<th style="border: 1px solid gray;">Nome</th>
-				<th style="border: 1px solid gray;">Fone</th>
-				<th style="border: 1px solid gray;">Email</th>
+				<th >Id</th>
+				<th >Nome</th>
+				<th >Fone</th>
+				<th >Email</th>
+				<th >Opções</th>
 			</tr>
 		</thead>
 		<tbody>
 			<%for(int i = 0; i < lista.size(); i++){ %>
 				
 				<tr >
-					<td style="border: 1px solid gray; text-align: center;"><%= lista.get(i).getIdcon() %></td>
-					<td style="border: 1px solid gray;"><%= lista.get(i).getNome() %></td>
-					<td style="border: 1px solid gray;"><%= lista.get(i).getFone() %></td>
-					<td style="border: 1px solid gray;"><%= lista.get(i).getEmail() %></td>
+					<td ><%= lista.get(i).getIdcon() %></td>
+					<td ><%= lista.get(i).getNome() %></td>
+					<td ><%= lista.get(i).getFone() %></td>
+					<td ><%= lista.get(i).getEmail() %></td>
+					<td><a href="select?idcon=<%=lista.get(i).getIdcon() %>" class="botao2">Editar</a>
+					<a href="javascript: confirmar(<%=lista.get(i).getIdcon() %>)" class="botao3">Excluir</a></td>
 				</tr>
 				
 			<%} %>
 		</tbody>
 	</table>
-
+	<script type="text/javascript" src="scripts/confirmador.js"></script>
 </body>
 </html>
